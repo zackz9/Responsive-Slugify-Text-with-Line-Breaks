@@ -10,7 +10,7 @@
 </head>
 <body class="flex items-center justify-center min-h-screen text-gray-800">
   <!-- Main Container -->
-  <div class="w-full md:w-4/5 max-w-4xl p-6 bg-white bg-opacity-80 rounded-lg shadow-lg flex flex-col md:flex-row items-start gap-6 transform transition-all duration-500">
+  <div class="w-full md:w-[95%] max-w-6xl p-6 bg-white bg-opacity-80 rounded-lg shadow-lg flex flex-col md:flex-row items-start gap-6 transform transition-all duration-500 mx-auto">
     
     <!-- Input and Button Section -->
     <div class="flex-grow flex flex-col space-y-4 w-full md:w-2/3">
@@ -18,9 +18,49 @@
       <textarea id="textInput" placeholder="Enter your text here..." 
                 class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 rows="4"></textarea>
+      <div class="text-gray-600 mt-4">
+        <p id="wordCount">Mots : 0</p>
+        <p id="characterCount">Caractères : 0</p>
+      </div>
+                
       <button id="slugifyButton" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all w-full md:w-auto">
         Convert to Slug
       </button>
+      <div class="flex flex-wrap gap-4 mt-4">
+        <div class="flex flex-wrap gap-4 mt-4">
+          <!-- Choix du séparateur -->
+          <div class="flex items-center">
+            <label for="separatorSelect" class="mr-2 text-gray-700">Séparateur :</label>
+            <select id="separatorSelect" class="border border-gray-300 rounded p-2">
+              <option value="-">Tiret (-)</option>
+              <option value="_">Underscore (_)</option>
+              <option value=" ">Espace</option>
+            </select>
+          </div>
+        
+          <!-- Conserver les majuscules -->
+          <div class="flex items-center">
+            <label for="preserveCaseCheckbox" class="mr-2 text-gray-700">Conserver les majuscules :</label>
+            <input type="checkbox" id="preserveCaseCheckbox" class="h-5 w-5 text-blue-600">
+          </div>
+        
+          <!-- Limiter la longueur -->
+          <div class="flex items-center">
+            <label for="maxLengthInput" class="mr-2 text-gray-700">Longueur max :</label>
+            <input type="number" id="maxLengthInput" class="border border-gray-300 rounded p-2 w-20" placeholder="Infini">
+          </div>
+        </div>
+        
+      </div>
+      
+
+      <div class="preview mt-4">
+        <h3 class="text-gray-700 font-semibold mb-2">Prévisualisation dynamique :</h3>
+        <p id="slugPreview" class="p-3 bg-gray-100 text-gray-600 rounded italic">
+          Slugified result will appear here...
+        </p>
+      </div>
+      
     </div>
 
     <!-- Result Section -->
