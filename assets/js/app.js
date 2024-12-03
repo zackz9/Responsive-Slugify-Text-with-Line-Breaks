@@ -8,12 +8,15 @@ window.addEventListener('load', () => {
   // Fonction pour convertir un texte en slug
   function slugify(text) {
     return text
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9 -]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
+      .normalize('NFD') // Décompose les caractères accentués
+      .replace(/[\u0300-\u036f]/g, '') // Supprime les diacritiques
+      .toLowerCase() // Met tout en minuscule
+      .trim() // Supprime les espaces au début et à la fin
+      .replace(/[^a-z0-9\s-]/g, '') // Supprime les caractères spéciaux
+      .replace(/\s+/g, '-') // Remplace les espaces par des tirets
+      .replace(/-+/g, '-'); // Élimine les tirets consécutifs
   }
+  
 
   function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
